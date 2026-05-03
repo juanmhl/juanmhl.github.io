@@ -231,7 +231,7 @@ Astro is a static site builder. It takes your `.md` content files and `.astro` p
 
 ## License
 
-This project is released into the public domain under [CC0 1.0 Universal](LICENSE). You can copy, modify, distribute, and use it for any purpose without asking permission or providing attribution.
+This project is licensed under the [MIT License](LICENSE). You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. The only condition is that the above copyright notice and this permission notice shall be included in all copies or substantial portions. If you use this design, please include the same license file and acknowledge the original author.
 
 ---
 
