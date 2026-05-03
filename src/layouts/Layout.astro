@@ -1,6 +1,10 @@
 ---
-const { title } = Astro.props;
-const pageTitle = title ? `${title} // Juan María Herrera-López` : 'Juan María Herrera-López';
+const { title, description } = Astro.props;
+const baseName = 'Juan María Herrera-López';
+const pageTitle = title ? `${title} — ${baseName}` : `${baseName} — Medical Robotics Researcher`;
+const defaultDescription = 'Predoctoral researcher at Universidad de Málaga working on AI and human-robot collaboration in minimally invasive surgery.';
+const ogDescription = description || defaultDescription;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -9,6 +13,10 @@ const pageTitle = title ? `${title} // Juan María Herrera-López` : 'Juan Marí
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={ogDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
