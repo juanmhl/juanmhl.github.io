@@ -45,7 +45,7 @@ All content lives in `.md` files inside `src/content/`. You never need to edit `
 
 Every `.md` file starts with frontmatter between `---` lines. This is metadata that controls how the content is displayed.
 
-**`src/content/about.md`**
+**`src/content/about/about.md`**
 ```yaml
 ---
 title: "About"
@@ -208,11 +208,11 @@ Netlify will rebuild and redeploy your site automatically every time you push ch
 
 | If you want to change... | Edit this file... |
 |--------------------------|-------------------|
-| Your bio text | `src/content/about.md` |
-| Your email, Scholar, GitHub links | `src/content/about.md` frontmatter |
+| Your bio text | `src/content/about/about.md` |
+| Your email, Scholar, GitHub links | `src/content/about/about.md` frontmatter |
 | Your CV file | Replace `public/cv.pdf` |
-| Research lines text | `src/content/research.md` |
-| Contact text | `src/content/contact.md` |
+| Research lines text | `src/content/research/research.md` |
+| Contact text | `src/content/contact/contact.md` |
 | Add/remove/edit publications | Files in `src/content/publications/` |
 | Projects page intro text | `src/content/projects-page/projects-page.md` |
 | Add/remove/edit projects | Files in `src/content/projects/` |
@@ -226,3 +226,15 @@ Netlify will rebuild and redeploy your site automatically every time you push ch
 ## What is Astro?
 
 Astro is a static site builder. It takes your `.md` content files and `.astro` page templates and generates plain HTML files that can be served anywhere. You do not need to learn Astro to use this site — just edit the `.md` files and rebuild.
+
+---
+
+## License
+
+This project is released into the public domain under [CC0 1.0 Universal](LICENSE). You can copy, modify, distribute, and use it for any purpose without asking permission or providing attribution.
+
+---
+
+## Acknowledgment
+
+This site was vibe coded with [OpenCode](https://opencode.ai) and [Kimi K2.6](https://www.moonshot.cn/).
