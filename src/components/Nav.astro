@@ -18,6 +18,12 @@ const isActive = (href: string) => {
 <nav>
   <div class="nav-inner">
     <a href="/about" class="name">Juan María Herrera-López</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
     <div class="links">
       {links.map(link => (
         <a
@@ -66,6 +72,26 @@ const isActive = (href: string) => {
     text-decoration: underline;
   }
 
+  .menu-toggle {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: #ffffff;
+    transition: transform 150ms ease, opacity 150ms ease;
+  }
+
   .links {
     display: flex;
     gap: 24px;
@@ -108,5 +134,50 @@ const isActive = (href: string) => {
 
   .links a.active::after {
     transform: scaleX(1);
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .links {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background-color: #080808;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px var(--content-pad);
+    }
+
+    .links a {
+      padding: 12px 0;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .links a:last-child {
+      border-bottom: none;
+    }
+
+    .menu-toggle:checked ~ .links {
+      display: flex;
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
   }
 </style>
