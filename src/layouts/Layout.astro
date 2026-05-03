@@ -108,9 +108,32 @@ const pageTitle = title ? `${title} // Juan María Herrera-López` : 'Juan Marí
       background-color: var(--accent);
       color: var(--bg);
     }
+
+    footer {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 var(--content-pad) 40px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      color: rgba(242, 242, 242, 0.25);
+      text-align: left;
+    }
+
+    footer a {
+      color: rgba(242, 242, 242, 0.35);
+    }
+
+    footer a:hover {
+      color: rgba(242, 242, 242, 0.6);
+    }
   </style>
 </head>
 <body>
   <slot />
+  <footer>
+    <a href="https://github.com/juanmhl/juanmhl.github.io" target="_blank" rel="noopener">source</a>
+    {' // '}
+    <a href="https://github.com/juanmhl/juanmhl.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT license</a>
+  </footer>
 </body>
 </html>
