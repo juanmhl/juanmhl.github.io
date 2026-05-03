@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="Blog">
+  <Nav />
+  <main>
+    <h1>[ Blog ]</h1>
+    <div class="list">
+      {posts.map(post => (
+        <div class="item">
+          <a href={`/blog/${post.slug}`} class="title">{post.data.title}</a>
+          <p class="date">— {post.data.date.toISOString().slice(0, 10)}</p>
+          <p class="description">{post.data.description}</p>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px 0;
+  }
+
+  .item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .title {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .title:hover {
+    text-decoration: underline;
+  }
+
+  .date {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  .description {
+    font-size: 14px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { getCollection, render } from 'astro:content';
+
+const publications = await getCollection('publications');
+publications.sort((a, b) => {
+  if (b.data.year !== a.data.year) {
+    return b.data.year - a.data.year;
+  }
+  return a.data.order - b.data.order;
+});
+
+const rendered = await Promise.all(
+  publications.map(async (pub) => {
+    const { Content } = await render(pub);
+    return { ...pub, Content };
+  })
+);
+---
+
+<Layout title="Publications">
+  <Nav />
+  <main>
+    <h1>[ Publications ]</h1>
+    <div class="list">
+      {rendered.map(pub => (
+        <div class="item">
+          <p class="meta">
+            [ {pub.data.year} ] — <a href={pub.data.url} class="title" target="_blank" rel="noopener">{pub.data.title}</a>
+          </p>
+          <p class="venue">{pub.data.venue}</p>
+          <p class="authors">{pub.data.authors}</p>
+          {(pub.data.website || pub.data.repo) && (
+            <p class="links">
+              {pub.data.website && (
+                <span><span class="label">Paper website — </span><a href={pub.data.website} target="_blank" rel="noopener">{pub.data.website}</a></span>
+              )}
+              {pub.data.repo && (
+                <span><span class="label">Code repository — </span><a href={pub.data.repo} target="_blank" rel="noopener">{pub.data.repo}</a></span>
+              )}
+            </p>
+          )}
+          <div class="abstract">
+            <pub.Content />
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px 0;
+  }
+
+  .item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  .title {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .title:hover {
+    text-decoration: underline;
+  }
+
+  .venue {
+    font-size: 14px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 4px;
+  }
+
+  .authors {
+    font-size: 14px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 4px;
+  }
+
+  .links {
+    font-size: 12px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .links > span {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .links .label {
+    font-family: 'Space Mono', monospace;
+  }
+
+  .links a {
+    color: rgba(242, 242, 242, 0.6);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .abstract {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .abstract :global(p) {
+    margin-bottom: 0;
+    color: rgba(242, 242, 242, 0.6);
+  }
+</style>

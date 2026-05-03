@@ -1,0 +1,112 @@
+---
+const currentPath = Astro.url.pathname;
+const links = [
+  { href: '/about', label: 'ABOUT' },
+  { href: '/research', label: 'RESEARCH' },
+  { href: '/publications', label: 'PUBLICATIONS' },
+  { href: '/projects', label: 'PROJECTS' },
+  { href: '/blog', label: 'BLOG' },
+  { href: '/contact', label: 'CONTACT' }
+];
+
+const isActive = (href: string) => {
+  if (href === '/about' && currentPath === '/') return true;
+  return currentPath === href || currentPath.startsWith(href + '/');
+};
+---
+
+<nav>
+  <div class="nav-inner">
+    <a href="/about" class="name">Juan María Herrera-López</a>
+    <div class="links">
+      {links.map(link => (
+        <a
+          href={link.href}
+          class={isActive(link.href) ? 'active' : ''}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #080808;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 var(--content-pad);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  .name {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .name:hover {
+    text-decoration: underline;
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: rgba(242, 242, 242, 0.4);
+    text-decoration: none;
+    position: relative;
+    transition: color 150ms ease;
+  }
+
+  .links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transition: transform 150ms ease;
+    transform-origin: left;
+  }
+
+  .links a:hover {
+    color: #ffffff;
+  }
+
+  .links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .links a.active {
+    color: #ffffff;
+  }
+
+  .links a.active::after {
+    transform: scaleX(1);
+  }
+</style>

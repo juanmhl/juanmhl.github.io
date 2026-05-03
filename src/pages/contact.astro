@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('contact', 'contact');
+const { Content } = await render(entry);
+const { title, email, github, scholar, researchgate, linkedin, orcid, uni } = entry.data;
+---
+
+<Layout title={title}>
+  <Nav />
+  <main>
+    <h1>[ {title} ]</h1>
+    <Content />
+    <hr />
+    <div class="links">
+      <a href={`mailto:${email}`}>{email}</a>
+      <span class="sep">{'//'}</span>
+      <a href={github}>GitHub</a>
+      {uni && (
+        <>
+          <span class="sep">{'//'}</span>
+          <a href={uni}>Uni</a>
+        </>
+      )}
+      {orcid && (
+        <>
+          <span class="sep">{'//'}</span>
+          <a href={orcid}>ORCID</a>
+        </>
+      )}
+      {scholar && (
+        <>
+          <span class="sep">{'//'}</span>
+          <a href={scholar}>Scholar</a>
+        </>
+      )}
+      {researchgate && (
+        <>
+          <span class="sep">{'//'}</span>
+          <a href={researchgate}>ResearchGate</a>
+        </>
+      )}
+      {linkedin && (
+        <>
+          <span class="sep">{'//'}</span>
+          <a href={linkedin}>LinkedIn</a>
+        </>
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .links {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .sep {
+    color: rgba(242, 242, 242, 0.4);
+  }
+</style>

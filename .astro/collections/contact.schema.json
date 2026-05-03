@@ -1,0 +1,50 @@
+{
+  "$ref": "#/definitions/contact",
+  "definitions": {
+    "contact": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "github": {
+          "type": "string",
+          "format": "uri"
+        },
+        "scholar": {
+          "type": "string",
+          "format": "uri"
+        },
+        "researchgate": {
+          "type": "string",
+          "format": "uri"
+        },
+        "linkedin": {
+          "type": "string",
+          "format": "uri"
+        },
+        "orcid": {
+          "type": "string",
+          "format": "uri"
+        },
+        "uni": {
+          "type": "string",
+          "format": "uri"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "email"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

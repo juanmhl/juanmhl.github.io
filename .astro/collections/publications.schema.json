@@ -1,0 +1,50 @@
+{
+  "$ref": "#/definitions/publications",
+  "definitions": {
+    "publications": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "year": {
+          "type": "number"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "order": {
+          "type": "number",
+          "default": 0
+        },
+        "website": {
+          "type": "string",
+          "format": "uri"
+        },
+        "repo": {
+          "type": "string",
+          "format": "uri"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "year",
+        "venue",
+        "authors",
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

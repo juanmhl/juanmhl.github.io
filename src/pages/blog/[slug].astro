@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, date } = post.data;
+---
+
+<Layout title={title}>
+  <Nav />
+  <main>
+    <a href="/blog" class="back">[ Blog ]</a>
+    <h1>{title}</h1>
+    <p class="date">— {date.toISOString().slice(0, 10)}</p>
+    <hr />
+    <Content />
+  </main>
+</Layout>
+
+<style>
+  .back {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: rgba(242, 242, 242, 0.4);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .back:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .date {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: rgba(242, 242, 242, 0.4);
+    margin-bottom: 0;
+    text-align: left;
+  }
+</style>

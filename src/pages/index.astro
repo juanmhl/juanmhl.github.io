@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('about', 'about');
+const { Content } = await render(entry);
+const { title, scholar, github, email, cv } = entry.data;
+---
+
+<Layout title={title}>
+  <Nav />
+  <main>
+    <h1>[ {title} ]</h1>
+    <Content />
+    <hr />
+    <div class="links">
+      <a href={scholar}>Scholar</a>
+      <span class="sep">//</span>
+      <a href={github}>GitHub</a>
+      <span class="sep">//</span>
+      <a href={`mailto:${email}`}>{email}</a>
+      <span class="sep">//</span>
+      <a href={cv}>CV</a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .links {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .sep {
+    color: rgba(242, 242, 242, 0.4);
+  }
+</style>

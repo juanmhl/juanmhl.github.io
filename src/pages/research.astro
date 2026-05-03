@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('research', 'research');
+const { Content } = await render(entry);
+const { title } = entry.data;
+---
+
+<Layout title={title}>
+  <Nav />
+  <main>
+    <h1>[ {title} ]</h1>
+    <Content />
+  </main>
+</Layout>
