@@ -2,19 +2,18 @@
 title: "Research"
 ---
 
+## Surgical Activity Recognition and Task Understanding
 
+My work on surgical AI started with recognition of surgical gestures from robot kinematics and has evolved toward richer representations of surgical activity. I currently study causal sequence models, multimodal perception, and structured task representations that can provide reliable context for downstream robotic planning and control.
 
-## Surgical Activity Recognition and Maneuver Modeling
+## Robot Learning, Motion Generation and Control
 
-My entry point into surgical AI was automatic recognition of surgical gestures from kinematic data, using statistical and discriminative models validated on benchmarks like JIGSAWS. This work has since evolved toward modeling complete surgical maneuvers, with hepatic resection as the target procedure. The focus is on extracting structured, semantically meaningful representations of surgical motion that can feed downstream planning and control components.
+A second line focuses on how robots can acquire and execute manipulation skills from expert demonstrations. This includes learning-from-demonstration, movement primitives, trajectory generation, teleoperation, and constrained force/motion control for physically interactive robotic tasks.
 
-## Learning-Based Motion Generation and Control
+## Neuro-Symbolic AI and High-Level Reasoning
 
-A second line addresses how robots can acquire and execute surgical subtasks from expert demonstrations. This includes generative models for trajectory generation conditioned on task context and force profiles, as well as movement primitive frameworks for modular, reusable motion representations in manipulation tasks.
+My current main interest is in neuro-symbolic approaches that combine learned perception with explicit domain knowledge and logical constraints. I am exploring how grounded predicates, ontologies, and structured temporal models can support interpretable activity recognition, task supervision, and high-level decision-making in robotic systems.
 
-## Neuro-Symbolic AI for Surgical Robotics
+## Medical Robotics and Validation
 
-My current main interest is in neuro-symbolic approaches that combine the adaptability of data-driven models with the interpretability and traceability of symbolic representations. I am exploring how to integrate ontological representations of surgical tasks with learned perception models, with the longer-term goal of embedding this reasoning layer into planning and control frameworks for semi-autonomous surgical assistance, where interpretability and safety are non-negotiable.
-
-
-
+My research is primarily motivated by medical and surgical robotics, where autonomy must coexist with safety, traceability, and experimental validation. Through these projects I have also gained experience with medical-device regulatory processes, technical documentation, and clinical study protocols.
