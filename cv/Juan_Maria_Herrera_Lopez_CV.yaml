@@ -66,12 +66,6 @@ cv:
         highlights:
           - 'Average grade: 8.81/10; Best Academic Record Award (2021/2022 graduating cohort)'
 
-    Selected Open-Source Work:
-      - name: '[JIGSAWS PyTorch Dataset](https://github.com/juanmhl/jigsaws-pytorch-dataset)'
-        summary: Reusable Python/PyTorch dataset utilities for surgical activity recognition research.
-      - name: '[Laparoscopic Suture Gesture Recognition](https://github.com/juanmhl/uma-lapsuture-gestures-recognition)'
-        summary: Public code for kinematic feature selection and gesture classification accompanying first-author IEEE Access work.
-
     Selected Publications:
       - '**IEEE Access (2024, first author):** [Laparoscopic Suture Gestures Recognition via Machine Learning](https://doi.org/10.1109/ACCESS.2024.3516949)'
       - '**Robotics and Autonomous Systems (2026):** [Ontology-based action planner for robotic laparoscopic suturing](https://doi.org/10.1016/j.robot.2026.105633)'
