@@ -1,22 +1,23 @@
-name: RenderCV preview
+name: Publish selected RenderCV CV
 
 on:
   push:
     branches:
       - rendercv-preview
     paths:
-      - 'cv/Juan_Maria_Herrera_Lopez_CV.yaml'
       - '.github/workflows/rendercv-preview.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  render:
+  render-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout preview branch
         uses: actions/checkout@v4
+        with:
+          ref: rendercv-preview
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,25 +27,30 @@ jobs:
       - name: Install RenderCV
         run: python -m pip install 'rendercv[full]==2.8'
 
-      - name: Render theme previews
-        shell: bash
+      - name: Render Engineering Classic CV
         run: |
-          set -euo pipefail
-          mkdir -p theme-previews
-          for theme in engineeringresumes engineeringclassic harvard ink; do
-            echo "Rendering $theme"
-            rendercv render cv/Juan_Maria_Herrera_Lopez_CV.yaml --design.theme "$theme"
-            mkdir -p "theme-previews/$theme"
-            cp -R cv/rendercv_output/. "theme-previews/$theme/"
-            rm -rf cv/rendercv_output
-          done
+          rm -rf cv/rendercv_output
+          rendercv render cv/Juan_Maria_Herrera_Lopez_CV.yaml --design.theme engineeringclassic
+          PDF=$(find cv/rendercv_output -type f -name '*.pdf' | head -n 1)
+          test -n "$PDF"
+          cp "$PDF" /tmp/cv.pdf
 
-      - name: Show generated files
-        run: find theme-previews -type f -maxdepth 4 -print
-
-      - name: Upload RenderCV outputs
-        uses: actions/upload-artifact@v4
+      - name: Checkout website main branch
+        uses: actions/checkout@v4
         with:
-          name: rendercv-theme-previews
-          path: theme-previews/**
-          if-no-files-found: error
+          ref: main
+          path: website-main
+
+      - name: Publish CV on website
+        run: |
+          cp /tmp/cv.pdf website-main/public/cv.pdf
+          cd website-main
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/cv.pdf
+          if git diff --cached --quiet; then
+            echo 'CV already up to date.'
+          else
+            git commit -m 'Publish updated Engineering Classic CV'
+            git push origin main
+          fi
