@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Juan María Herrera López
+  headline: Robotics Engineer & Researcher | Machine Learning, Robot Learning & Human-Robot Interaction
+  location: Málaga, Spain
+  email: juanma_hl@uma.es
+  website: https://juanmhl.github.io/
+  social_networks:
+    - network: LinkedIn
+      username: juanmhl
+    - network: GitHub
+      username: juanmhl
+  sections:
+    Professional Summary:
+      - Robotics and Mechatronics Engineer and PhD researcher developing intelligent robotic systems across machine learning, robot learning, control, and human-robot interaction. Hands-on experience in surgical robotics, perception, learning from demonstration, teleoperation, neuro-symbolic reasoning, and medical-device validation.
+
+    Experience:
+      - company: Bristol Robotics Laboratory (UWE Bristol)
+        position: Visiting Robotics Researcher
+        start_date: 2026-09
+        end_date: present
+        location: Bristol, UK
+        highlights:
+          - Exploring multimodal AI and vision-language models for robotic perception, action recognition, and task-state understanding.
+          - Integrating learned perception with structured reasoning and temporal task representations; contributing to experimental design and evaluation.
+
+      - company: IBIMA Plataforma BIONAND / University of Málaga
+        position: Robotics Research Engineer / PhD Researcher
+        start_date: 2022-11
+        end_date: present
+        location: Málaga, Spain
+        highlights:
+          - Developing machine-learning and neuro-symbolic methods for surgical activity recognition, robotic perception, and high-level reasoning from kinematic and multimodal data.
+          - Building learning-from-demonstration, trajectory-generation, teleoperation, and force/motion-control pipelines for constrained robotic manipulation using Python, PyTorch, ROS/ROS 2, MATLAB, and Docker.
+          - Designing reproducible experimental pipelines with user-independent evaluation and contributing to medical-device regulatory documentation, validation, and clinical study protocols.
+
+      - company: Medical Robotics Laboratory, University of Málaga
+        position: Engineering Intern - Medical Robotics
+        start_date: 2021-11
+        end_date: 2022-06
+        location: Málaga, Spain
+        highlights:
+          - Developed a ROS/MATLAB cyber-physical laparoscopic robotics framework and analytical inverse kinematics for a 7-DoF Barrett WAM; work later published as a first-author RIAI article.
+
+    Education:
+      - institution: University of Málaga
+        area: Mechatronics Engineering
+        degree: PhD
+        start_date: 2023-10
+        end_date: present
+        location: Málaga, Spain
+        highlights:
+          - Human-Robot Collaboration in Minimally Invasive Surgery; FPU Predoctoral Fellowship
+      - institution: University of Málaga
+        area: Mechatronics Engineering
+        degree: MEng
+        start_date: 2022-10
+        end_date: 2023-07
+        location: Málaga, Spain
+      - institution: University of Málaga
+        area: Electronics, Robotics and Mechatronics Engineering
+        degree: BEng
+        start_date: 2018-10
+        end_date: 2022-07
+        location: Málaga, Spain
+        highlights:
+          - 'Average grade: 8.81/10; Best Academic Record Award (2021/2022 graduating cohort)'
+
+    Selected Publications:
+      - '**IEEE Access (2024, first author):** [Laparoscopic Suture Gestures Recognition via Machine Learning](https://doi.org/10.1109/ACCESS.2024.3516949)'
+      - '**Robotics and Autonomous Systems (2026):** [Ontology-based action planner for robotic laparoscopic suturing](https://doi.org/10.1016/j.robot.2026.105633)'
+      - '**Applied Sciences (2026):** [Decoupling Tissue and Abdominal Forces in Laparoscopic Robotic Surgery via Viscoelastic Modeling](https://doi.org/10.3390/app16042099)'
+      - '**RIAI (2023, first author):** [Entorno de trabajo cíber-físico para cirugía laparoscópica](https://doi.org/10.4995/riai.2023.18753)'
+
+    Technical Skills:
+      - label: Robotics
+        details: ROS/ROS 2, robot control, teleoperation, HRI, motion planning, force/motion control, learning from demonstration, movement primitives, RCM-constrained manipulation
+      - label: AI & Machine Learning
+        details: Python, PyTorch, deep learning, computer vision, sequence modeling, neuro-symbolic AI, vision-language models, scikit-learn
+      - label: Software & Engineering
+        details: Linux, Docker, Git, MATLAB, C++, reproducible experimental pipelines
+      - label: Domain
+        details: surgical and medical robotics, minimally invasive surgery, kinematic modeling, medical-device validation and regulatory documentation
+
+    Languages:
+      - label: Languages
+        details: Spanish (native), English (C1 - Trinity College London)
+
+design:
+  theme: engineeringclassic
+  page:
+    size: a4
+    top_margin: 1.0cm
+    bottom_margin: 1.0cm
+    left_margin: 1.35cm
+    right_margin: 1.35cm
+    show_footer: false
+    show_top_note: false
+  typography:
+    font_size:
+      body: 9.2pt
+      name: 22pt
+      headline: 9.4pt
+      connections: 8.8pt
+      section_titles: 1.14em
+  section_titles:
+    space_above: 0.28cm
+    space_below: 0.14cm
+  sections:
+    space_between_regular_entries: 0.20cm
+    space_between_text_based_entries: 0.06cm
+  entries:
+    date_and_location_width: 3.45cm
+    highlights:
+      space_between_items: 0.02cm
+      space_above: 0.02cm
+
+locale:
+  language: english
+
+settings:
+  current_date: 2026-09-21
+  render_command:
+    output_folder: rendercv_output
+  pdf_title: Juan Maria Herrera Lopez - Robotics Engineer CV
