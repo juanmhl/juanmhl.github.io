@@ -26,17 +26,25 @@ jobs:
       - name: Install RenderCV
         run: python -m pip install 'rendercv[full]==2.8'
 
-      - name: Render CV
-        run: rendercv render cv/Juan_Maria_Herrera_Lopez_CV.yaml
+      - name: Render theme previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p theme-previews
+          for theme in engineeringresumes engineeringclassic harvard ink; do
+            echo "Rendering $theme"
+            rendercv render cv/Juan_Maria_Herrera_Lopez_CV.yaml --design.theme "$theme"
+            mkdir -p "theme-previews/$theme"
+            cp -R cv/rendercv_output/. "theme-previews/$theme/"
+            rm -rf cv/rendercv_output
+          done
 
       - name: Show generated files
-        run: find . -path '*rendercv_output*' -type f -maxdepth 5 -print
+        run: find theme-previews -type f -maxdepth 4 -print
 
-      - name: Upload RenderCV output
+      - name: Upload RenderCV outputs
         uses: actions/upload-artifact@v4
         with:
-          name: rendercv-preview
-          path: |
-            rendercv_output/**
-            cv/rendercv_output/**
+          name: rendercv-theme-previews
+          path: theme-previews/**
           if-no-files-found: error
